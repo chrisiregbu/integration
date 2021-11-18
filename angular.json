@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-e2e-docker": {
+    "DemoApp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,19 +13,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-e2e-docker",
+            "outputPath": "dist/DemoApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -41,9 +39,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -65,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-e2e-docker:build"
+            "browserTarget": "DemoApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-e2e-docker:build:production"
+              "browserTarget": "DemoApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-e2e-docker:build"
+            "browserTarget": "DemoApp:build"
           }
         },
         "test": {
@@ -91,15 +87,13 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-devkit/build-angular:eslint",
           "options": {
             "tsConfig": [
               "tsconfig.app.json",
@@ -115,33 +109,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-e2e-docker:serve"
+            "devServerTarget": "DemoApp:serve"
           },
           "configurations": {
-            "smoke": {
-              "protractorConfig": "e2e/protractor-smoke.conf.js",
-              "devServerTarget": "angular-e2e-docker:serve",
-              "webdriverUpdate": false
-            },
-            "regression": {
-              "protractorConfig": "e2e/protractor-regression.conf.js",
-              "devServerTarget": "angular-e2e-docker:serve",
-              "webdriverUpdate": false
-            },
-            "uat": {
-              "protractorConfig": "e2e/protractor-uat.conf.js",
-              "devServerTarget": "angular-e2e-docker:serve",
-              "webdriverUpdate": false
-            },
-            "e2e": {
-              "protractorConfig": "e2e/protractor-e2e.conf.js",
-              "devServerTarget": "angular-e2e-docker:serve",
-              "webdriverUpdate": false
+            "production": {
+              "devServerTarget": "DemoApp:serve:production"
             }
           }
         }
       }
-    }
-  },
-  "defaultProject": "angular-e2e-docker"
+    }},
+  "defaultProject": "DemoApp"
 }
